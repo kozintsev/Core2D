@@ -1242,6 +1242,13 @@ namespace Core2D.Editor
         {
             CurrentTool = Tools.FirstOrDefault(t => t.Name == "Ellipse");
         }
+        /// <summary>
+        /// Set current tool to <see cref="ToolCircle"/>.
+        /// </summary>
+        public void OnToolCircle()
+        {
+            CurrentTool = Tools.FirstOrDefault(t => t.Name == "Circle");
+        }
 
         /// <summary>
         /// Set current tool to <see cref="ToolText"/>.

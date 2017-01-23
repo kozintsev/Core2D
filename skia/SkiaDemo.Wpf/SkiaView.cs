@@ -39,10 +39,17 @@ namespace SkiaDemo.Wpf
 
         private void Update()
         {
-            var matrix = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice;
+            var presentationSource = PresentationSource.FromVisual(this);
+            if (presentationSource != null)
+            {
+                if (presentationSource.CompositionTarget != null)
+                {
+                    var matrix = presentationSource.CompositionTarget.TransformToDevice;
 
-            _dpiX = matrix.M11;
-            _dpiY = matrix.M22;
+                    _dpiX = matrix.M11;
+                    _dpiY = matrix.M22;
+                }
+            }
 
             _actualWidth = ActualWidth;
             _actualHeight = ActualHeight;
