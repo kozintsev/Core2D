@@ -70,7 +70,11 @@ namespace Core2D.Editor.Tools
                     {
                         if (_ellipse != null)
                         {
-                            var result = editor.TryToGetConnectionPoint(sx, sy);
+                            var x1 = _ellipse.BottomRight.X;
+                            var delta = System.Math.Abs(x1 - sx);
+                            var x2 = _desiredCenterX + delta;
+                            var y2 = _desiredCenterY + delta;
+                            var result = editor.TryToGetConnectionPoint(x2, y2);
                             if (result != null)
                             {
                                 _ellipse.BottomRight = result;
@@ -136,7 +140,6 @@ namespace Core2D.Editor.Tools
                                 editor.TryToHoverShape(sx, sy);
                             }
                             var x1 = _ellipse.BottomRight.X;
-                            var y1 = _ellipse.BottomRight.Y;
                             var delta = System.Math.Abs(x1 - sx);
                             _ellipse.BottomRight.X = _desiredCenterX + delta;
                             _ellipse.BottomRight.Y = _desiredCenterY + delta;
