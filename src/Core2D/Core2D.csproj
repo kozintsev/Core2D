@@ -16,6 +16,9 @@
     <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\..\skia\packages\Core2D.0.2.0-build1316-alpha\lib\portable-windows8+net45\</OutputPath>
+  </PropertyGroup>
   <Import Project="..\..\Core2D.targets" />
   <ItemGroup>
     <Compile Include="Attributes\ContentAttribute.cs" />

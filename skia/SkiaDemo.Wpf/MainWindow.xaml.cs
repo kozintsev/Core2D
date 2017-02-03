@@ -171,7 +171,9 @@ namespace SkiaDemo.Wpf
                             _projectEditor.OnToolRectangle();
                             break;
                         case Key.E:
-                            //_projectEditor.OnToolEllipse();
+                            _projectEditor.OnToolEllipse();
+                            break;
+                        case Key.X:
                             _projectEditor.OnToolCircle();
                             break;
                         case Key.T:
