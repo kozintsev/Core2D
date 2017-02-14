@@ -13,8 +13,8 @@ namespace Core2D.Editor.Tools
         private readonly IServiceProvider _serviceProvider;
         private ToolState _currentState = ToolState.None;
         private XEllipse _ellipse;
-        private XPoint _point;
-        private EllipseSelection _selection;
+        //private EllipseSelection _selection;
+        private CircleSelection _selection;
         private double _desiredCenterX;
         private double _desiredCenterY;
 
@@ -44,19 +44,12 @@ namespace Core2D.Editor.Tools
                         var style = editor.Project.CurrentStyleLibrary.Selected;
                         _desiredCenterX = sx;
                         _desiredCenterY = sy;
-                        _point = XPoint.Create(_desiredCenterX, _desiredCenterX);
                         _ellipse = XEllipse.Create(
                             sx, sy,
                             editor.Project.Options.CloneStyle ? style.Clone() : style,
                             editor.Project.Options.PointShape,
                             editor.Project.Options.DefaultIsStroked,
                             editor.Project.Options.DefaultIsFilled);
-
-                        var result = editor.TryToGetConnectionPoint(sx, sy);
-                        if (result != null)
-                        {
-                            _ellipse.TopLeft = result;
-                        }
 
                         editor.Project.CurrentContainer.WorkingLayer.Shapes = editor.Project.CurrentContainer.WorkingLayer.Shapes.Add(_ellipse);
                         editor.Project.CurrentContainer.WorkingLayer.Invalidate();
@@ -83,7 +76,6 @@ namespace Core2D.Editor.Tools
                             editor.Project.CurrentContainer.WorkingLayer.Shapes = editor.Project.CurrentContainer.WorkingLayer.Shapes.Remove(_ellipse);
                             Remove();
                             base.Finalize(_ellipse);
-                            editor.Project.AddShape(editor.Project.CurrentContainer.CurrentLayer, _ellipse);
                             _currentState = ToolState.None;
                             editor.CancelAvailable = false;
                         }
@@ -158,7 +150,7 @@ namespace Core2D.Editor.Tools
         {
             base.ToStateOne();
             var editor = _serviceProvider.GetService<ProjectEditor>();
-            _selection = new EllipseSelection(
+            _selection = new CircleSelection(
                 editor.Project.CurrentContainer.HelperLayer,
                 _ellipse,
                 editor.Project.Options.HelperStyle,
