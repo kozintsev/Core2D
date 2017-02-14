@@ -236,6 +236,7 @@
     <Compile Include="Editor\Bounds\ShapeHitTestPoint.cs" />
     <Compile Include="Editor\PathToolBase.cs" />
     <Compile Include="Editor\ScriptBase.cs" />
+    <Compile Include="Editor\Tools\Selection\CircleSelection.cs" />
     <Compile Include="Editor\Tools\ToolCircle.cs" />
     <Compile Include="Editor\Views\Interfaces\IMainView.cs" />
     <Compile Include="Editor\ProjectEditorCommands.cs" />
