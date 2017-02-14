@@ -18,6 +18,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>..\..\skia\packages\Core2D.0.2.0-build1316-alpha\lib\portable-windows8+net45\</OutputPath>
+    <DocumentationFile>..\..\skia\packages\Core2D.0.2.0-build1316-alpha\lib\portable-windows8+net45\Core2D.XML</DocumentationFile>
   </PropertyGroup>
   <Import Project="..\..\Core2D.targets" />
   <ItemGroup>

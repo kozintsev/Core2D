@@ -42,7 +42,7 @@
             <Run>M: Move</Run><LineBreak/>
             <Run>R: Rectangle</Run><LineBreak/>
             <Run>E: Ellipse</Run><LineBreak/>
-            <Run>X: Circle</Run>
+            <Run>X: Circle</Run><LineBreak/>
             <Run>T: Text</Run><LineBreak/>
             <Run>I: Image</Run><LineBreak/>
             <Run FontWeight="Bold">Options</Run><LineBreak/>
