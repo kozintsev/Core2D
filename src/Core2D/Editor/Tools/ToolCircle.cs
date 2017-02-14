@@ -72,10 +72,10 @@ namespace Core2D.Editor.Tools
                             {
                                 _ellipse.BottomRight = result;
                             }
-
                             editor.Project.CurrentContainer.WorkingLayer.Shapes = editor.Project.CurrentContainer.WorkingLayer.Shapes.Remove(_ellipse);
                             Remove();
                             base.Finalize(_ellipse);
+                            editor.Project.AddShape(editor.Project.CurrentContainer.CurrentLayer, _ellipse);
                             _currentState = ToolState.None;
                             editor.CancelAvailable = false;
                         }

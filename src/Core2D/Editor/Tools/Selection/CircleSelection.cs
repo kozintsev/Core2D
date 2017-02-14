@@ -14,11 +14,10 @@ namespace Core2D.Editor.Tools.Selection
     public class CircleSelection
     {
         private readonly XLayer _layer;
-        private readonly XEllipse _arc;
+        private readonly XEllipse _ellipse;
         private readonly ShapeStyle _style;
         private readonly BaseShape _point;
-        private XLine _startLine;
-        private XEllipse _ellipse;
+        private XLine _radiusLine;
         private XPoint _centerHelperPoint;
         private XPoint _endHelperPoint;
 
@@ -32,7 +31,7 @@ namespace Core2D.Editor.Tools.Selection
         public CircleSelection(XLayer layer, XEllipse shape, ShapeStyle style, BaseShape point)
         {
             _layer = layer;
-            _arc = shape;
+            _ellipse = shape;
             _style = style;
             _point = point;
         }
@@ -44,11 +43,11 @@ namespace Core2D.Editor.Tools.Selection
         {
             _centerHelperPoint = XPoint.Create(0, 0, _point);
             _endHelperPoint = XPoint.Create(0, 0, _point);
-            _startLine = XLine.Create(0, 0, _style, null);
+            //_radiusLine = XLine.Create(0, 0, _style, null);
 
             _layer.Shapes = _layer.Shapes.Add(_centerHelperPoint);
             _layer.Shapes = _layer.Shapes.Add(_endHelperPoint);
-            _layer.Shapes = _layer.Shapes.Add(_startLine);
+            //_layer.Shapes = _layer.Shapes.Add(_radiusLine);
         }
 
 
@@ -57,35 +56,35 @@ namespace Core2D.Editor.Tools.Selection
         /// </summary>
         public void Move()
         {
-            //var a = WpfArc.FromXArc(_arc);
+            //var a = WpfArc.FromXArc(_ellipse);
             var p1 = Point2.Create(_ellipse.TopLeft.X, _ellipse.TopLeft.Y);
             var p2 = Point2.Create(_ellipse.BottomRight.X, _ellipse.BottomRight.Y);
             var rect = Rect2.Create(p1, p2);
             var center = Point2.Create(rect.X + rect.Width / 2.0, rect.Y + rect.Height / 2.0);
             double offsetX = center.X - rect.X;
             double offsetY = center.Y - rect.Y;
-            var R = center.Y + offsetY;
+            var dy = center.Y + System.Math.Abs(offsetY);
 
-            if (_startLine != null)
-            {
-                _startLine.Start.X = center.Y;
-                _startLine.Start.Y = center.X;
-                _startLine.End.X = center.X;
-                _startLine.End.Y = R;
-            }
+            ////if (_radiusLine != null)
+            ////{
+            ////    _radiusLine.Start.X = center.Y;
+            ////    _radiusLine.Start.Y = center.X;
+            ////    _radiusLine.End.X = center.X;
+            ////    _radiusLine.End.Y = dy;
+            ////}
 
 
             if (_centerHelperPoint != null)
             {
                 _centerHelperPoint.X = center.X;
-                _centerHelperPoint.Y = center.X;
+                _centerHelperPoint.Y = center.Y;
             }
 
 
             if (_endHelperPoint != null)
             {
-                _endHelperPoint.X = center.X;
-                _endHelperPoint.Y = R;
+                _endHelperPoint.X = center.X + offsetX;
+                _endHelperPoint.Y = center.Y;
             }
 
             _layer.Invalidate();
@@ -97,11 +96,11 @@ namespace Core2D.Editor.Tools.Selection
         public void Remove()
         {
 
-            if (_startLine != null)
-            {
-                _layer.Shapes = _layer.Shapes.Remove(_startLine);
-                _startLine = null;
-            }
+            //if (_radiusLine != null)
+            //{
+            //    _layer.Shapes = _layer.Shapes.Remove(_radiusLine);
+            //    _radiusLine = null;
+            //}
 
 
             if (_centerHelperPoint != null)
