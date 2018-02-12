@@ -162,6 +162,7 @@
         <DataTemplate DataType="{x:Type Shapes:XEllipse}">
             <shapes:EllipseControl/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type Shape:X}"></DataTemplate>
         <DataTemplate DataType="{x:Type Shapes:XImage}">
             <shapes:ImageControl/>
         </DataTemplate>
